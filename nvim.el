@@ -132,7 +132,7 @@
 
 (defun nvim-connect (&optional server)
   (unless server
-    (setq server (nvim--guess-server)))
+    (setq server (nvim-guess-server)))
   (cl-assert server nil "No server")
   (let ((buffer (get-buffer-create " *nvim*"))
         proc connection)
