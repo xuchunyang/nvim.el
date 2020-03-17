@@ -19,7 +19,9 @@ jobs:
         version: ${{ matrix.emacs_version }}
 
     - uses: actions/checkout@v1
-    - name: Byte compile
+    - name: Install dependencies
       run: |
-        curl -O https://raw.githubusercontent.com/xuchunyang/msgpack.el/master/msgpack.el
-        emacs -Q --batch -L . --eval "(setq byte-compile-error-on-warn t)" -f batch-byte-compile *.el
+        curl --silent --remote-name https://raw.githubusercontent.com/xuchunyang/msgpack.el/master/msgpack.el
+        emacs -Q --batch -L . --eval "(setq byte-compile-error-on-warn t)" -f batch-byte-compile msgpack.el
+    - name: Byte compile
+      run: 'emacs -Q --batch -L . --eval "(setq byte-compile-error-on-warn t)" -f batch-byte-compile nvim.el'
